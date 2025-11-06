@@ -1,9 +1,27 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.14.36518.9 d17.14
+VisualStudioVersion = 17.14.36518.9
 MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MeetUpTogether.UI", "MeetUpTogether.UI\MeetUpTogether.UI.csproj", "{E440C654-53C2-5FFA-FECA-C83FC406EDB8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MeetUpTogether.UnitTests", "MeetUpTogether.UnitTests\MeetUpTogether.UnitTests.csproj", "{BEF487FE-454C-C258-B858-1790E7F03B24}"
+EndProject
 Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E440C654-53C2-5FFA-FECA-C83FC406EDB8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E440C654-53C2-5FFA-FECA-C83FC406EDB8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E440C654-53C2-5FFA-FECA-C83FC406EDB8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E440C654-53C2-5FFA-FECA-C83FC406EDB8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BEF487FE-454C-C258-B858-1790E7F03B24}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BEF487FE-454C-C258-B858-1790E7F03B24}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BEF487FE-454C-C258-B858-1790E7F03B24}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BEF487FE-454C-C258-B858-1790E7F03B24}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
