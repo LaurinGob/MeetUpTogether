@@ -4,9 +4,56 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MeetUpTogether.UI"
+        xmlns:controls="clr-namespace:MeetUpTogether.UI.Controls"
         mc:Ignorable="d"
-        Title="MeetUp - Together!" Height="450" Width="800">
+        Title="MeetUp - Together!"
+        Height="450"
+        Width="800"
+        Background="White">
+
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="2*" />
+        </Grid.ColumnDefinitions>
+
+        <Border Grid.Row="0"
+                Grid.ColumnSpan="2"
+                Background="#E6F2FF"
+                Padding="5"
+                BorderBrush="#D0E6FF"
+                BorderThickness="0,0,0,1">
+            <StackPanel Orientation="Horizontal">
+                <Button Name="GenerateReport"
+                        Content="Generate Report"
+                        Background="LightSkyBlue"
+                        Width="150"
+                        Height="30"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"/>
+            </StackPanel>
+        </Border>
+
+        <Border Grid.Row="1"
+                Grid.ColumnSpan="2"
+                Background="#F7F7F7"
+                Padding="5"
+                BorderBrush="#DDD"
+                BorderThickness="0,0,0,1">
+            <controls:SearchBarUserControl/>
+        </Border>
+
+        <controls:LeftPanelUserControl Grid.Row="2"
+                                       Grid.Column="0"
+                                       Background="#FAFAFA"/>
+        <controls:RightPanelUserControl Grid.Row="2"
+                                        Grid.Column="1"
+                                        Background="#FFFFFF"/>
     </Grid>
 </Window>
