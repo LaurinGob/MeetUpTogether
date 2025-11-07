@@ -7,61 +7,75 @@
              xmlns:icon="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <ScrollViewer VerticalScrollBarVisibility="Auto">
-        <Grid Margin="20">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-            </Grid.RowDefinitions>
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <!-- Scrollable content -->
+            <RowDefinition Height="Auto"/>
+            <!-- Fixed Save button -->
+        </Grid.RowDefinitions>
 
-            <StackPanel Grid.Row="0" Margin="0,0,0,10">
-                <TextBlock Text="Meeting Title" FontWeight="SemiBold" Margin="0,0,0,5"/>
-                <TextBox x:Name="TitleInput" Height="30"/>
-            </StackPanel>
-
-            <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="0,0,0,10" HorizontalAlignment="Left">
-                <StackPanel Width="150" Margin="0,0,10,0">
-                    <TextBlock Text="From" FontWeight="SemiBold" Margin="0,0,0,5"/>
-                    <DatePicker x:Name="FromDate"/>
+        <ScrollViewer Grid.Row="0" VerticalScrollBarVisibility="Auto">
+            <StackPanel>
+                <StackPanel Margin="0,0,0,10">
+                    <TextBlock Text="Meeting Title" FontWeight="SemiBold" Margin="0,0,0,5"/>
+                    <TextBox x:Name="TitleInput" Height="30"/>
                 </StackPanel>
-                <StackPanel Width="150">
-                    <TextBlock Text="To" FontWeight="SemiBold" Margin="0,0,0,5"/>
-                    <DatePicker x:Name="ToDate"/>
+
+                <StackPanel Orientation="Horizontal" Margin="0,0,0,10" HorizontalAlignment="Left">
+                    <StackPanel Width="150" Margin="0,0,10,0">
+                        <TextBlock Text="From" FontWeight="SemiBold" Margin="0,0,0,5"/>
+                        <DatePicker x:Name="FromDate"/>
+                    </StackPanel>
+                    <StackPanel Width="150">
+                        <TextBlock Text="To" FontWeight="SemiBold" Margin="0,0,0,5"/>
+                        <DatePicker x:Name="ToDate"/>
+                    </StackPanel>
+                </StackPanel>
+
+                <StackPanel Margin="0,0,0,10">
+                    <TextBlock Text="Agenda" FontWeight="SemiBold" Margin="0,0,0,5"/>
+                    <TextBox x:Name="AgendaInput" Height="80" TextWrapping="Wrap" AcceptsReturn="True"/>
+                </StackPanel>
+
+                <StackPanel Margin="0,0,0,10">
+                    <TextBlock Text="Notes" FontWeight="SemiBold" Margin="0,0,0,5"/>
+                    <ListBox x:Name="NotesList" Height="100" BorderBrush="#DDD" BorderThickness="1"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+                    <TextBox x:Name="NewNoteInput" Height="30" Width="250" Margin="0,0,8,0"/>
+                    <Button x:Name="AddNoteButton"
+                            Width="36"
+                            Height="36"
+                            Background="#E0E0E0"
+                            BorderBrush="#CCCCCC"
+                            Click="AddNoteButton_Click">
+                        <Viewbox Width="16" Height="16">
+                            <icon:PackIcon Kind="Plus"/>
+                        </Viewbox>
+                    </Button>
                 </StackPanel>
             </StackPanel>
+        </ScrollViewer>
 
-            <StackPanel Grid.Row="2" Margin="0,0,0,10">
-                <TextBlock Text="Agenda" FontWeight="SemiBold" Margin="0,0,0,5"/>
-                <TextBox x:Name="AgendaInput" Height="80" TextWrapping="Wrap" AcceptsReturn="True"/>
-            </StackPanel>
-
-            <StackPanel Grid.Row="3" Margin="0,0,0,10">
-                <TextBlock Text="Notes" FontWeight="SemiBold" Margin="0,0,0,5"/>
-                <ListBox x:Name="NotesList" Height="100" BorderBrush="#DDD" BorderThickness="1"/>
-            </StackPanel>
-
-            <StackPanel Grid.Row="4" Orientation="Horizontal" Margin="0,0,0,10">
-                <TextBox x:Name="NewNoteInput" Height="30" Width="250" Margin="0,0,8,0"/>
-                <Button x:Name="AddNoteButton" Width="36" Height="36" Background="#E0E0E0" BorderBrush="#CCCCCC" Click="AddNoteButton_Click">
-                    <Viewbox Width="16" Height="16">
-                        <icon:PackIcon Kind="Plus"/>
-                    </Viewbox>
-                </Button>
-            </StackPanel>
-
+        <Border Grid.Row="1"
+                Margin="0,10,0,0"
+                Padding="0"
+                VerticalAlignment="Bottom"
+                BorderBrush="#DDD">
             <Button x:Name="SaveMeetingButton"
-                    Grid.Row="5"
-                    Content="Save Meeting"
-                    Height="36"
+                    HorizontalAlignment="Center"
+                    Width="40"
+                    Height="40"
+                    Margin="10"
                     Background="#E0E0E0"
                     BorderBrush="#CCCCCC"
-                    HorizontalAlignment="Right"
-                    Width="130"
-                    Click="SaveMeetingButton_Click"/>
-        </Grid>
-    </ScrollViewer>
+                    Click="SaveMeetingButton_Click">
+                <Viewbox Width="16" Height="16">
+                    <icon:PackIcon Kind="ContentSave" Foreground="#333"/>
+                </Viewbox>
+            </Button>
+        </Border>
+    </Grid>
 </UserControl>

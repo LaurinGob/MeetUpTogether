@@ -24,5 +24,24 @@ namespace MeetUpTogether.UI.Controls
         {
             InitializeComponent();
         }
+        private void SearchButton_Click(object sender, RoutedEventArgs e)
+        {
+            ExecuteSearch();
+        }
+
+        private void SearchInput_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+                ExecuteSearch();
+        }
+
+        private void ExecuteSearch()
+        {
+            string query = SearchInput.Text.Trim();
+            if (!string.IsNullOrEmpty(query))
+            {
+                MessageBox.Show($"Searching for: {query}", "Search", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+        }
     }
 }
