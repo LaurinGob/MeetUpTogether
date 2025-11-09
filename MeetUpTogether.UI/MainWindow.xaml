@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MeetUpTogether.UI"
         xmlns:controls="clr-namespace:MeetUpTogether.UI.Controls"
+        xmlns:icon="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
         Title="MeetUp - Together!"
         Height="450"
@@ -17,43 +18,26 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="1*" />
-            <ColumnDefinition Width="2*" />
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="2*"/>
         </Grid.ColumnDefinitions>
 
-        <Border Grid.Row="0"
-                Grid.ColumnSpan="2"
-                Background="#E6F2FF"
-                Padding="5"
-                BorderBrush="#D0E6FF"
-                BorderThickness="0,0,0,1">
-            <StackPanel Orientation="Horizontal">
-                <Button Name="GenerateReport"
-                        Content="Generate Report"
-                        Background="LightSkyBlue"
-                        Width="150"
-                        Height="30"
-                        HorizontalAlignment="Left"
-                        VerticalAlignment="Center"/>
-            </StackPanel>
-        </Border>
+        <ToolBarTray Grid.Row="0" Grid.ColumnSpan="2">
+            <ToolBar Background="#F0F0F0">
+                <Button Command="{Binding GenerateReportCommand}" 
+                    Width="120" Height="30"
+                    Background="LightSkyBlue"
+                    BorderBrush="#BFBFBF">
+                    Generate PDF
+                </Button>
+                <!-- Add more toolbar buttons here later -->
+            </ToolBar>
+        </ToolBarTray>
 
-        <Border Grid.Row="1"
-                Grid.ColumnSpan="2"
-                Background="#F7F7F7"
-                Padding="5"
-                BorderBrush="#DDD"
-                BorderThickness="0,0,0,1">
-            <controls:SearchBarUserControl/>
-        </Border>
+        <controls:SearchBarUserControl Grid.Row="1" Grid.ColumnSpan="2" DataContext="{Binding SearchBar}"/>
 
-        <controls:LeftPanelUserControl Grid.Row="2"
-                                       Grid.Column="0"
-                                       Background="#FAFAFA"/>
-        <controls:RightPanelUserControl Grid.Row="2"
-                                        Grid.Column="1"
-                                        Background="#FFFFFF"/>
+        <controls:LeftPanelUserControl Grid.Row="2" Grid.Column="0" DataContext="{Binding LeftPanel}"/>
+        <controls:RightPanelUserControl Grid.Row="2" Grid.Column="1" DataContext="{Binding RightPanel}"/>
     </Grid>
 </Window>

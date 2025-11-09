@@ -1,17 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.ObjectModel;
 
 namespace MeetUpTogether.UI.Models
 {
     public class Meeting
     {
-        public string Title { get; set; }
-        public DateTime From { get; set; }
-        public DateTime To { get; set; }
+        public string Title { get; set; } = "New Meeting";
+        public DateTime From { get; set; } = DateTime.Today;
+        public DateTime To { get; set; } = DateTime.Today;
         public string Agenda { get; set; }
         public ObservableCollection<Note> Notes { get; set; } = new();
     }
