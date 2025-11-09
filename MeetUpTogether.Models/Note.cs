@@ -1,4 +1,4 @@
-﻿namespace MeetUpTogether.UI.Models
+﻿namespace MeetUpTogether.Models
 {
     public class Note
     {

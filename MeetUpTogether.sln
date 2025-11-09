@@ -7,6 +7,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MeetUpTogether.UI", "MeetUp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MeetUpTogether.UnitTests", "MeetUpTogether.UnitTests\MeetUpTogether.UnitTests.csproj", "{BEF487FE-454C-C258-B858-1790E7F03B24}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MeetUpTogether.BLL", "MeetUpTogether.BLL\MeetUpTogether.BLL.csproj", "{DBCE0263-CB94-400D-B275-0B3E108F4243}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MeetUpTogether.Models", "MeetUpTogether.Models\MeetUpTogether.Models.csproj", "{3E0065AE-EF32-4FCB-B0D3-64B15E307075}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +25,14 @@ Global
 		{BEF487FE-454C-C258-B858-1790E7F03B24}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BEF487FE-454C-C258-B858-1790E7F03B24}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BEF487FE-454C-C258-B858-1790E7F03B24}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DBCE0263-CB94-400D-B275-0B3E108F4243}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DBCE0263-CB94-400D-B275-0B3E108F4243}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DBCE0263-CB94-400D-B275-0B3E108F4243}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DBCE0263-CB94-400D-B275-0B3E108F4243}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3E0065AE-EF32-4FCB-B0D3-64B15E307075}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3E0065AE-EF32-4FCB-B0D3-64B15E307075}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3E0065AE-EF32-4FCB-B0D3-64B15E307075}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3E0065AE-EF32-4FCB-B0D3-64B15E307075}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

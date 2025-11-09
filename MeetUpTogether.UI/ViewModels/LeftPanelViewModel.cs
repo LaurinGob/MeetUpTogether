@@ -1,6 +1,9 @@
-﻿using MeetUpTogether.UI.Models;
+﻿using MeetUpTogether.BLL.Services;
+using MeetUpTogether.Models;
+using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Linq;
 using System.Windows.Data;
 using System.Windows.Input;
 
@@ -8,7 +11,9 @@ namespace MeetUpTogether.UI.ViewModels
 {
     public class LeftPanelViewModel : BaseViewModel
     {
-        public ObservableCollection<Meeting> AllMeetings { get; } = new ObservableCollection<Meeting>();
+        private readonly MeetingManagerService _meetingService;
+
+        public ObservableCollection<Meeting> AllMeetings { get; } = new();
         public ICollectionView MeetingsView { get; }
 
         private Meeting _selectedMeeting;
@@ -31,13 +36,27 @@ namespace MeetUpTogether.UI.ViewModels
         public Action<Meeting> OnAddMeeting { get; set; }
         public Action<Meeting> OnMeetingRemoved { get; set; }
 
-        public LeftPanelViewModel()
+        public LeftPanelViewModel(MeetingManagerService meetingService)
         {
+            _meetingService = meetingService;
+
             MeetingsView = CollectionViewSource.GetDefaultView(AllMeetings);
             MeetingsView.Filter = FilterMeetings;
 
             RemoveMeetingCommand = new RelayCommand(RemoveSelectedMeeting, () => SelectedMeeting != null);
             AddMeetingCommand = new RelayCommand(AddMeeting);
+
+            // Load existing meetings initially
+            RefreshMeetings();
+        }
+
+        public void RefreshMeetings()
+        {
+            AllMeetings.Clear();
+            foreach (var meeting in _meetingService.GetAllMeetings())
+                AllMeetings.Add(meeting);
+
+            MeetingsView.Refresh();
         }
 
         private bool FilterMeetings(object obj)
@@ -56,22 +75,19 @@ namespace MeetUpTogether.UI.ViewModels
         {
             if (SelectedMeeting != null)
             {
-                var removed = SelectedMeeting;
-                AllMeetings.Remove(removed);
-                OnMeetingRemoved?.Invoke(removed);
+                _meetingService.RemoveMeeting(SelectedMeeting);
+                RefreshMeetings();
+
+                OnMeetingRemoved?.Invoke(SelectedMeeting);
                 SelectedMeeting = null;
             }
         }
 
         private void AddMeeting()
         {
-            // Call a callback to create a new meeting in the RightPanel
             OnAddMeeting?.Invoke(null);
         }
 
-        private void UpdateCommands()
-        {
-            CommandManager.InvalidateRequerySuggested();
-        }
+        private void UpdateCommands() => CommandManager.InvalidateRequerySuggested();
     }
 }

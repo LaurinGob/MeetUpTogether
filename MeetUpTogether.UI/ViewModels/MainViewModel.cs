@@ -1,10 +1,12 @@
-﻿using MeetUpTogether.UI.Models;
+﻿using MeetUpTogether.BLL.Services;
+using MeetUpTogether.Models;
 using System.Windows.Input;
 
 namespace MeetUpTogether.UI.ViewModels
 {
     public class MainViewModel : BaseViewModel
     {
+        private readonly MeetingManagerService _meetingService;
         public LeftPanelViewModel LeftPanel { get; }
         public RightPanelViewModel RightPanel { get; }
         public SearchBarViewModel SearchBar { get; }
@@ -27,19 +29,11 @@ namespace MeetUpTogether.UI.ViewModels
         {
             GenerateReportCommand = new RelayCommand(GenerateReport);
             SearchBar = new SearchBarViewModel();
-            LeftPanel = new LeftPanelViewModel();
-            RightPanel = new RightPanelViewModel();
 
-            RightPanel.OnSave = meeting =>
-            {
-                if (!LeftPanel.AllMeetings.Contains(meeting))
-                {
-                    LeftPanel.AllMeetings.Add(meeting);
-                }
+            _meetingService = new MeetingManagerService();
 
-                LeftPanel.SelectedMeeting = null;
-                LeftPanel.MeetingsView.Refresh();
-            };
+            LeftPanel = new LeftPanelViewModel(_meetingService);
+            RightPanel = new RightPanelViewModel(_meetingService);
 
             SearchBar.PropertyChanged += (s, e) =>
             {
@@ -49,8 +43,26 @@ namespace MeetUpTogether.UI.ViewModels
 
             LeftPanel.OnAddMeeting = _ =>
             {
-                RightPanel.CurrentMeeting = new Meeting();
+                RightPanel.CurrentMeeting = new Meeting
+                {
+                    From = DateTime.Today,
+                    To = DateTime.Today
+                };
                 RightPanel.IsEditable = true;
+            };
+
+            RightPanel.OnSave = meeting =>
+            {
+                // Save the meeting via the BLL service
+                _meetingService.AddMeeting(meeting);
+
+                // Refresh UI list
+                LeftPanel.RefreshMeetings();
+
+                // Clear selection and disable editing
+                LeftPanel.SelectedMeeting = null;
+                RightPanel.CurrentMeeting = null;
+                RightPanel.IsEditable = false;
             };
 
             LeftPanel.OnMeetingRemoved = removedMeeting =>
@@ -71,6 +83,11 @@ namespace MeetUpTogether.UI.ViewModels
                     {
                         RightPanel.CurrentMeeting = LeftPanel.SelectedMeeting;
                         RightPanel.IsEditable = true;
+                    }
+                    else
+                    {
+                        RightPanel.CurrentMeeting = null;
+                        RightPanel.IsEditable = false;
                     }
                 }
             };

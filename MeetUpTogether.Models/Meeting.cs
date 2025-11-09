@@ -1,6 +1,6 @@
 ﻿using System.Collections.ObjectModel;
 
-namespace MeetUpTogether.UI.Models
+namespace MeetUpTogether.Models
 {
     public class Meeting
     {
