@@ -13,13 +13,7 @@ namespace MeetUpTogether.UI.ViewModels
         public Meeting CurrentMeeting
         {
             get => _currentMeeting;
-            set
-            {
-                _currentMeeting = value;
-                OnPropertyChanged();
-                OnPropertyChanged(nameof(IsEditable));
-                UpdateCommands();
-            }
+            set { _currentMeeting = value; OnPropertyChanged(); OnPropertyChanged(nameof(IsEditable)); UpdateCommands(); }
         }
 
         private string _newNoteText;
@@ -29,12 +23,7 @@ namespace MeetUpTogether.UI.ViewModels
             set { _newNoteText = value; OnPropertyChanged(); UpdateCommands(); }
         }
 
-        private bool _isEditable;
-        public bool IsEditable
-        {
-            get => _isEditable;
-            set { _isEditable = value; OnPropertyChanged(); UpdateCommands(); }
-        }
+        public bool IsEditable => CurrentMeeting != null;
 
         public ICommand AddNoteCommand { get; }
         public ICommand SaveMeetingCommand { get; }
@@ -45,54 +34,34 @@ namespace MeetUpTogether.UI.ViewModels
         {
             _meetingService = meetingService ?? throw new ArgumentNullException(nameof(meetingService));
 
-            AddNoteCommand = new RelayCommand(AddNote, CanAddNote);
-            SaveMeetingCommand = new RelayCommand(SaveMeeting, CanSaveMeeting);
-
-            IsEditable = false;
-        }
-
-        private bool CanAddNote()
-        {
-            return IsEditable && CurrentMeeting != null && !string.IsNullOrWhiteSpace(NewNoteText);
+            AddNoteCommand = new RelayCommand(AddNote, () => IsEditable && !string.IsNullOrWhiteSpace(NewNoteText));
+            SaveMeetingCommand = new RelayCommand(SaveMeeting, () => IsEditable && !string.IsNullOrWhiteSpace(CurrentMeeting?.Title));
         }
 
         private void AddNote()
         {
-            if (CurrentMeeting == null) return;
-
-            var newNote = new Note { Content = NewNoteText };
-            CurrentMeeting.Notes.Add(newNote);
-            NewNoteText = string.Empty;
-
-            // Update meeting in business layer
-            _meetingService.UpdateMeeting(CurrentMeeting);
-        }
-
-        private bool CanSaveMeeting()
-        {
-            return IsEditable && CurrentMeeting != null && !string.IsNullOrWhiteSpace(CurrentMeeting.Title);
+            if (CurrentMeeting != null && !string.IsNullOrWhiteSpace(NewNoteText))
+            {
+                var note = new Note { Content = NewNoteText, Meeting = CurrentMeeting, MeetingId = CurrentMeeting.Id };
+                CurrentMeeting.Notes.Add(note);
+                NewNoteText = string.Empty;
+            }
         }
 
         private void SaveMeeting()
         {
             if (CurrentMeeting == null) return;
 
-            if (!_meetingService.GetAll().Contains(CurrentMeeting))
-            {
-                // New meeting → add via service
+            bool isNew = !_meetingService.GetAllMeetings().Contains(CurrentMeeting);
+
+            if (isNew)
                 _meetingService.AddMeeting(CurrentMeeting);
-            }
             else
-            {
-                // Existing meeting → update via service
                 _meetingService.UpdateMeeting(CurrentMeeting);
-            }
 
             OnSave?.Invoke(CurrentMeeting);
 
-            // Disable editing and clear current meeting after saving
             CurrentMeeting = null;
-            IsEditable = false;
             NewNoteText = string.Empty;
         }
 

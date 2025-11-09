@@ -11,6 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\MeetUpTogether.DAL\MeetUpTogether.DAL.csproj" />
     <ProjectReference Include="..\MeetUpTogether.Models\MeetUpTogether.Models.csproj" />
   </ItemGroup>
 

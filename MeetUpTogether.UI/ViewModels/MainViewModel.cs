@@ -1,5 +1,6 @@
 ﻿using MeetUpTogether.BLL.Services;
 using MeetUpTogether.Models;
+using System;
 using System.Windows.Input;
 
 namespace MeetUpTogether.UI.ViewModels
@@ -10,37 +11,23 @@ namespace MeetUpTogether.UI.ViewModels
         public LeftPanelViewModel LeftPanel { get; }
         public RightPanelViewModel RightPanel { get; }
         public SearchBarViewModel SearchBar { get; }
-        public ICommand GenerateReportCommand { get; }
-
-        public RelayCommand AddMeetingCommand { get; }
-
-        private Meeting _currentMeeting;
-        public Meeting CurrentMeeting
-        {
-            get => _currentMeeting;
-            set
-            {
-                _currentMeeting = value;
-                OnPropertyChanged();
-            }
-        }
 
         public MainViewModel()
         {
-            GenerateReportCommand = new RelayCommand(GenerateReport);
-            SearchBar = new SearchBarViewModel();
-
-            _meetingService = new MeetingManagerService();
+            _meetingService = ServiceFactory.CreateMeetingManager();
 
             LeftPanel = new LeftPanelViewModel(_meetingService);
             RightPanel = new RightPanelViewModel(_meetingService);
+            SearchBar = new SearchBarViewModel();
 
+            // Search filtering
             SearchBar.PropertyChanged += (s, e) =>
             {
                 if (e.PropertyName == nameof(SearchBar.SearchQuery))
                     LeftPanel.FilterQuery = SearchBar.SearchQuery;
             };
 
+            // Add new meeting
             LeftPanel.OnAddMeeting = _ =>
             {
                 RightPanel.CurrentMeeting = new Meeting
@@ -48,54 +35,26 @@ namespace MeetUpTogether.UI.ViewModels
                     From = DateTime.Today,
                     To = DateTime.Today
                 };
-                RightPanel.IsEditable = true;
             };
 
+            // Save callback
             RightPanel.OnSave = meeting =>
             {
-                // Save the meeting via the BLL service
-                _meetingService.AddMeeting(meeting);
+                if (!LeftPanel.AllMeetings.Contains(meeting))
+                    LeftPanel.AllMeetings.Add(meeting);
 
-                // Refresh UI list
-                LeftPanel.RefreshMeetings();
-
-                // Clear selection and disable editing
+                LeftPanel.MeetingsView.Refresh();
                 LeftPanel.SelectedMeeting = null;
-                RightPanel.CurrentMeeting = null;
-                RightPanel.IsEditable = false;
             };
 
-            LeftPanel.OnMeetingRemoved = removedMeeting =>
-            {
-                if (RightPanel.CurrentMeeting == removedMeeting)
-                {
-                    RightPanel.CurrentMeeting = null;
-                    RightPanel.NewNoteText = string.Empty;
-                    RightPanel.IsEditable = false;
-                }
-            };
-
+            // When a meeting is selected
             LeftPanel.PropertyChanged += (s, e) =>
             {
                 if (e.PropertyName == nameof(LeftPanel.SelectedMeeting))
                 {
-                    if (LeftPanel.SelectedMeeting != null)
-                    {
-                        RightPanel.CurrentMeeting = LeftPanel.SelectedMeeting;
-                        RightPanel.IsEditable = true;
-                    }
-                    else
-                    {
-                        RightPanel.CurrentMeeting = null;
-                        RightPanel.IsEditable = false;
-                    }
+                    RightPanel.CurrentMeeting = LeftPanel.SelectedMeeting;
                 }
             };
-        }
-        private void GenerateReport()
-        {
-            // TODO: implement PDF generation logic here using an external library
-            System.Diagnostics.Debug.WriteLine("GenerateReportCommand triggered");
         }
     }
 }

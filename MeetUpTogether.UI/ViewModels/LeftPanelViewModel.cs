@@ -1,5 +1,5 @@
-﻿using MeetUpTogether.BLL.Services;
-using MeetUpTogether.Models;
+﻿using MeetUpTogether.Models;
+using MeetUpTogether.BLL.Services;
 using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -13,7 +13,7 @@ namespace MeetUpTogether.UI.ViewModels
     {
         private readonly MeetingManagerService _meetingService;
 
-        public ObservableCollection<Meeting> AllMeetings { get; } = new();
+        public ObservableCollection<Meeting> AllMeetings { get; }
         public ICollectionView MeetingsView { get; }
 
         private Meeting _selectedMeeting;
@@ -34,39 +34,30 @@ namespace MeetUpTogether.UI.ViewModels
         public ICommand AddMeetingCommand { get; }
 
         public Action<Meeting> OnAddMeeting { get; set; }
-        public Action<Meeting> OnMeetingRemoved { get; set; }
 
         public LeftPanelViewModel(MeetingManagerService meetingService)
         {
-            _meetingService = meetingService;
+            _meetingService = meetingService ?? throw new ArgumentNullException(nameof(meetingService));
+
+            AllMeetings = new ObservableCollection<Meeting>(
+                _meetingService.GetAllMeetings()
+            );
 
             MeetingsView = CollectionViewSource.GetDefaultView(AllMeetings);
             MeetingsView.Filter = FilterMeetings;
 
             RemoveMeetingCommand = new RelayCommand(RemoveSelectedMeeting, () => SelectedMeeting != null);
             AddMeetingCommand = new RelayCommand(AddMeeting);
-
-            // Load existing meetings initially
-            RefreshMeetings();
-        }
-
-        public void RefreshMeetings()
-        {
-            AllMeetings.Clear();
-            foreach (var meeting in _meetingService.GetAllMeetings())
-                AllMeetings.Add(meeting);
-
-            MeetingsView.Refresh();
         }
 
         private bool FilterMeetings(object obj)
         {
             if (string.IsNullOrWhiteSpace(FilterQuery)) return true;
-            if (obj is Meeting meeting)
+            if (obj is Meeting m)
             {
-                return meeting.Title?.IndexOf(FilterQuery, StringComparison.OrdinalIgnoreCase) >= 0
-                    || (meeting.Agenda?.IndexOf(FilterQuery, StringComparison.OrdinalIgnoreCase) >= 0)
-                    || meeting.Notes.Any(n => n.Content?.IndexOf(FilterQuery, StringComparison.OrdinalIgnoreCase) >= 0);
+                return m.Title?.IndexOf(FilterQuery, StringComparison.OrdinalIgnoreCase) >= 0
+                       || m.Agenda?.IndexOf(FilterQuery, StringComparison.OrdinalIgnoreCase) >= 0
+                       || m.Notes.Any(n => n.Content?.IndexOf(FilterQuery, StringComparison.OrdinalIgnoreCase) >= 0);
             }
             return false;
         }
@@ -76,9 +67,7 @@ namespace MeetUpTogether.UI.ViewModels
             if (SelectedMeeting != null)
             {
                 _meetingService.RemoveMeeting(SelectedMeeting);
-                RefreshMeetings();
-
-                OnMeetingRemoved?.Invoke(SelectedMeeting);
+                AllMeetings.Remove(SelectedMeeting);
                 SelectedMeeting = null;
             }
         }
@@ -88,6 +77,9 @@ namespace MeetUpTogether.UI.ViewModels
             OnAddMeeting?.Invoke(null);
         }
 
-        private void UpdateCommands() => CommandManager.InvalidateRequerySuggested();
+        private void UpdateCommands()
+        {
+            CommandManager.InvalidateRequerySuggested();
+        }
     }
 }

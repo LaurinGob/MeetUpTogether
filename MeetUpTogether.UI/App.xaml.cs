@@ -8,5 +8,4 @@ namespace MeetUpTogether.UI
     public partial class App : Application
     {
     }
-
 }
