@@ -29,9 +29,8 @@
                     Width="120" Height="30"
                     Background="LightSkyBlue"
                     BorderBrush="#BFBFBF">
-                    Generate PDF
+                    Generate report
                 </Button>
-                <!-- Add more toolbar buttons here later -->
             </ToolBar>
         </ToolBarTray>
 
