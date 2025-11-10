@@ -10,16 +10,23 @@ namespace MeetUpTogether.BLL.Services
 {
     public class ReportService
     {
+        private readonly AppSettings _settings;
+
         public ReportService()
         {
             QuestPDF.Settings.License = LicenseType.Community;
+            _settings = AppSettings.Load(); // read from appsettings.json
         }
 
         private string GetReportsFolder()
         {
-            var exeFolder = AppContext.BaseDirectory;
-            var solutionRoot = Path.GetFullPath(Path.Combine(exeFolder, "..", "..", ".."));
-            var reportsFolder = Path.Combine(solutionRoot, "reports");
+            var reportsFolder = _settings.Paths.ReportsFolder;
+
+            if (!Path.IsPathRooted(reportsFolder))
+            {
+                var exeFolder = AppContext.BaseDirectory;
+                reportsFolder = Path.GetFullPath(Path.Combine(exeFolder, reportsFolder));
+            }
 
             Directory.CreateDirectory(reportsFolder);
             return reportsFolder;
