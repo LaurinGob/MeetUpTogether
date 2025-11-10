@@ -6,11 +6,14 @@ using System.ComponentModel;
 using System.Linq;
 using System.Windows.Data;
 using System.Windows.Input;
+using log4net;
 
 namespace MeetUpTogether.UI.ViewModels
 {
     public class LeftPanelViewModel : BaseViewModel
     {
+        private static readonly ILog _logger = LogManager.GetLogger(typeof(LeftPanelViewModel));
+
         private readonly MeetingManagerService _meetingService;
 
         public ObservableCollection<Meeting> AllMeetings { get; }
@@ -20,14 +23,28 @@ namespace MeetUpTogether.UI.ViewModels
         public Meeting SelectedMeeting
         {
             get => _selectedMeeting;
-            set { _selectedMeeting = value; OnPropertyChanged(); UpdateCommands(); }
+            set
+            {
+                _selectedMeeting = value;
+                OnPropertyChanged();
+                UpdateCommands();
+
+                _logger.Info($"SelectedMeeting changed: {SelectedMeeting?.Title ?? "None"}");
+            }
         }
 
         private string _filterQuery;
         public string FilterQuery
         {
             get => _filterQuery;
-            set { _filterQuery = value; OnPropertyChanged(); MeetingsView.Refresh(); }
+            set
+            {
+                _filterQuery = value;
+                OnPropertyChanged();
+                MeetingsView.Refresh();
+
+                _logger.Debug($"FilterQuery updated: '{_filterQuery}'");
+            }
         }
 
         public ICommand RemoveMeetingCommand { get; }
@@ -43,6 +60,8 @@ namespace MeetUpTogether.UI.ViewModels
                 _meetingService.GetAllMeetings()
             );
 
+            _logger.Info($"Loaded {AllMeetings.Count} meetings from service");
+
             MeetingsView = CollectionViewSource.GetDefaultView(AllMeetings);
             MeetingsView.Filter = FilterMeetings;
 
@@ -55,9 +74,14 @@ namespace MeetUpTogether.UI.ViewModels
             if (string.IsNullOrWhiteSpace(FilterQuery)) return true;
             if (obj is Meeting m)
             {
-                return m.Title?.IndexOf(FilterQuery, StringComparison.OrdinalIgnoreCase) >= 0
-                       || m.Agenda?.IndexOf(FilterQuery, StringComparison.OrdinalIgnoreCase) >= 0
-                       || m.Notes.Any(n => n.Content?.IndexOf(FilterQuery, StringComparison.OrdinalIgnoreCase) >= 0);
+                bool match = m.Title?.IndexOf(FilterQuery, StringComparison.OrdinalIgnoreCase) >= 0
+                             || m.Agenda?.IndexOf(FilterQuery, StringComparison.OrdinalIgnoreCase) >= 0
+                             || m.Notes.Any(n => n.Content?.IndexOf(FilterQuery, StringComparison.OrdinalIgnoreCase) >= 0);
+
+                if (match)
+                    _logger.Debug($"Meeting '{m.Title}' matches filter '{FilterQuery}'");
+
+                return match;
             }
             return false;
         }
@@ -66,14 +90,23 @@ namespace MeetUpTogether.UI.ViewModels
         {
             if (SelectedMeeting != null)
             {
-                _meetingService.RemoveMeeting(SelectedMeeting);
-                AllMeetings.Remove(SelectedMeeting);
-                SelectedMeeting = null;
+                try
+                {
+                    _meetingService.RemoveMeeting(SelectedMeeting);
+                    AllMeetings.Remove(SelectedMeeting);
+                    _logger.Info($"Removed meeting: {SelectedMeeting.Title}");
+                    SelectedMeeting = null;
+                }
+                catch (Exception ex)
+                {
+                    _logger.Error("Failed to remove meeting", ex);
+                }
             }
         }
 
         private void AddMeeting()
         {
+            _logger.Info("AddMeeting invoked");
             OnAddMeeting?.Invoke(null);
         }
 
