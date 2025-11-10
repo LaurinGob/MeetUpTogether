@@ -1,0 +1,154 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36" version="28.2.9">
+  <diagram id="C5RBs43oDa-KdzZeNtuy" name="Page-1">
+    <mxGraphModel dx="2037" dy="1253" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="WIyWlLk6GJQsqaUBKTNV-0" />
+        <mxCell id="WIyWlLk6GJQsqaUBKTNV-1" parent="WIyWlLk6GJQsqaUBKTNV-0" />
+        <mxCell id="ocFkZinrsmVWE0J_aSwc-6" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="660" y="720" width="300" height="210" as="geometry" />
+        </mxCell>
+        <mxCell id="ocFkZinrsmVWE0J_aSwc-0" value="&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;+ Id : int&lt;/div&gt;&lt;div&gt;+ Title : string&lt;/div&gt;&lt;div&gt;+ Agenda : string&lt;/div&gt;&lt;div&gt;+ From : DateTime&lt;/div&gt;&lt;div&gt;+ To : DateTime&lt;/div&gt;&lt;div&gt;+ Notes : List&amp;lt;Note&amp;gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="670" y="760" width="130" height="160" as="geometry" />
+        </mxCell>
+        <mxCell id="ocFkZinrsmVWE0J_aSwc-1" value="Meeting" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="670" y="760" width="130" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="ocFkZinrsmVWE0J_aSwc-3" value="&lt;div&gt;+ Id : int&lt;/div&gt;&lt;div&gt;+ Content : string&lt;/div&gt;&lt;div&gt;+ CreatedAt : DateTime&lt;/div&gt;&lt;div&gt;+ MeetingId : int&lt;/div&gt;&lt;div&gt;+ Meeting : Meeting&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="820" y="760" width="130" height="160" as="geometry" />
+        </mxCell>
+        <mxCell id="ocFkZinrsmVWE0J_aSwc-4" value="Note" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="820" y="760" width="130" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="ocFkZinrsmVWE0J_aSwc-7" value="Models" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="660" y="720" width="300" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="ocFkZinrsmVWE0J_aSwc-8" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="70" y="280" width="1050" height="410" as="geometry" />
+        </mxCell>
+        <mxCell id="ocFkZinrsmVWE0J_aSwc-9" value="&lt;div&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;+ OnPropertyChanged(propertyName : string)&lt;/span&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;fontSize=11;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="405" y="320" width="200" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="ocFkZinrsmVWE0J_aSwc-10" value="BaseViewModel" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="405" y="320" width="200" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="ocFkZinrsmVWE0J_aSwc-13" value="UI-Layer" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="70" y="280" width="1050" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="ocFkZinrsmVWE0J_aSwc-14" value="&lt;div&gt;- _meetingService : MeetingManagerService&lt;/div&gt;&lt;div&gt;- _reportService : ReportService&lt;/div&gt;&lt;div&gt;+ LeftPanel : LeftPanelViewModel&lt;/div&gt;&lt;div&gt;+ RightPanel : RightPanelViewModel&lt;/div&gt;&lt;div&gt;+ SearchBar : SearchBarViewModel&lt;/div&gt;&lt;div&gt;+ GenerateReportCommand : ICommand&lt;/div&gt;&lt;div&gt;+ CurrentMeeting : Meeting&lt;/div&gt;&lt;div&gt;+ GenerateReport()&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="80" y="470" width="270" height="210" as="geometry" />
+        </mxCell>
+        <mxCell id="ocFkZinrsmVWE0J_aSwc-16" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=1;entryDx=0;entryDy=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;" edge="1" parent="WIyWlLk6GJQsqaUBKTNV-1" source="ocFkZinrsmVWE0J_aSwc-15" target="ocFkZinrsmVWE0J_aSwc-9">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ocFkZinrsmVWE0J_aSwc-15" value="MainViewModel" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="80" y="470" width="270" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="ocFkZinrsmVWE0J_aSwc-17" value="&lt;div&gt;&lt;div&gt;- _meetingService : MeetingManagerService&lt;/div&gt;&lt;div&gt;+ AllMeetings : ObservableCollection&amp;lt;Meeting&amp;gt;&lt;/div&gt;&lt;div&gt;+ MeetingsView : ICollectionView&lt;/div&gt;&lt;div&gt;+ SelectedMeeting : Meeting&lt;/div&gt;&lt;div&gt;+ FilterQuery : string&lt;/div&gt;&lt;div&gt;+ RemoveMeetingCommand : ICommand&lt;/div&gt;&lt;div&gt;+ AddMeetingCommand : ICommand&lt;/div&gt;&lt;div&gt;+ OnAddMeeting : Action&amp;lt;Meeting&amp;gt;&lt;/div&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="370" y="470" width="270" height="210" as="geometry" />
+        </mxCell>
+        <mxCell id="ocFkZinrsmVWE0J_aSwc-18" value="LeftPanelViewModel&amp;nbsp;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="370" y="470" width="270" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="ocFkZinrsmVWE0J_aSwc-19" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;" edge="1" parent="WIyWlLk6GJQsqaUBKTNV-1" source="ocFkZinrsmVWE0J_aSwc-18">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="430" y="500" as="sourcePoint" />
+            <mxPoint x="505" y="430" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ocFkZinrsmVWE0J_aSwc-21" value="&lt;div&gt;- _meetingService : MeetingManagerService&lt;/div&gt;&lt;div&gt;+ CurrentMeeting : Meeting&lt;/div&gt;&lt;div&gt;+ NewNoteText : string&lt;/div&gt;&lt;div&gt;+ IsEditable : bool&lt;/div&gt;&lt;div&gt;+ AddNoteCommand : ICommand&lt;/div&gt;&lt;div&gt;+ SaveMeetingCommand : ICommand&lt;/div&gt;&lt;div&gt;+ OnSave : Action&amp;lt;Meeting&amp;gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="660" y="470" width="270" height="210" as="geometry" />
+        </mxCell>
+        <mxCell id="ocFkZinrsmVWE0J_aSwc-22" value="RightPanelViewModel&amp;nbsp;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="660" y="470" width="270" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="ocFkZinrsmVWE0J_aSwc-23" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="WIyWlLk6GJQsqaUBKTNV-1" source="ocFkZinrsmVWE0J_aSwc-22" target="ocFkZinrsmVWE0J_aSwc-9">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="540" y="500" as="sourcePoint" />
+            <mxPoint x="540" y="460" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ocFkZinrsmVWE0J_aSwc-24" value="+ SearchQuery : string" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="951" y="470" width="159" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="ocFkZinrsmVWE0J_aSwc-25" value="SearchBarViewModel&amp;nbsp;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="951" y="470" width="159" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="ocFkZinrsmVWE0J_aSwc-26" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="WIyWlLk6GJQsqaUBKTNV-1" source="ocFkZinrsmVWE0J_aSwc-25" target="ocFkZinrsmVWE0J_aSwc-9">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1080" y="490" as="sourcePoint" />
+            <mxPoint x="790" y="450" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ocFkZinrsmVWE0J_aSwc-27" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="70" y="720" width="570" height="260" as="geometry" />
+        </mxCell>
+        <mxCell id="ocFkZinrsmVWE0J_aSwc-30" value="BL-Layer" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="70" y="720" width="570" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="ocFkZinrsmVWE0J_aSwc-31" value="&lt;div&gt;&lt;div&gt;- _repository : IMeetingRepository&lt;/div&gt;&lt;div&gt;+ AddMeeting(m : Meeting)&lt;/div&gt;&lt;div&gt;+ UpdateMeeting(m : Meeting)&lt;/div&gt;&lt;div&gt;+ RemoveMeeting(m : Meeting)&lt;/div&gt;&lt;div&gt;+ GetAllMeetings() : IEnumerable&amp;lt;Meeting&amp;gt;&lt;/div&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="80" y="760" width="270" height="210" as="geometry" />
+        </mxCell>
+        <mxCell id="ocFkZinrsmVWE0J_aSwc-33" value="MeetingManagerService" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="80" y="760" width="270" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="ocFkZinrsmVWE0J_aSwc-43" value="&lt;div&gt;- _settings : AppSettings&lt;/div&gt;&lt;div&gt;+ GenerateMeetingReport(meetings : IEnumerable&amp;lt;Meeting&amp;gt;) : string&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="360" y="760" width="270" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="ocFkZinrsmVWE0J_aSwc-44" value="ReportService" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="360" y="760" width="270" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="ocFkZinrsmVWE0J_aSwc-45" value="+ CreateMeetingManager() : MeetingManagerService" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="360" y="880" width="270" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="ocFkZinrsmVWE0J_aSwc-46" value="ServiceFactory" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="360" y="880" width="270" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="ocFkZinrsmVWE0J_aSwc-55" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="70" y="1010" width="570" height="380" as="geometry" />
+        </mxCell>
+        <mxCell id="ocFkZinrsmVWE0J_aSwc-56" value="DAL" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="70" y="1010" width="570" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="ocFkZinrsmVWE0J_aSwc-57" value="&lt;div&gt;+ GetAll() : IEnumerable&amp;lt;Meeting&amp;gt;&lt;/div&gt;&lt;div&gt;+ Add(m : Meeting)&lt;/div&gt;&lt;div&gt;+ Update(m : Meeting)&lt;/div&gt;&lt;div&gt;+ Delete(m : Meeting)&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="80" y="1050" width="270" height="140" as="geometry" />
+        </mxCell>
+        <mxCell id="ocFkZinrsmVWE0J_aSwc-58" value="IMeetingRepository" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="80" y="1050" width="270" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="ocFkZinrsmVWE0J_aSwc-59" value="&lt;div&gt;- _context : AppDbContext&lt;/div&gt;&lt;div&gt;+ GetAll()&lt;/div&gt;&lt;div&gt;+ Add(m : Meeting)&lt;/div&gt;&lt;div&gt;+ Update(m : Meeting)&lt;/div&gt;&lt;div&gt;+ Delete(m : Meeting)&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="80" y="1230" width="270" height="150" as="geometry" />
+        </mxCell>
+        <mxCell id="ocFkZinrsmVWE0J_aSwc-63" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="WIyWlLk6GJQsqaUBKTNV-1" source="ocFkZinrsmVWE0J_aSwc-60" target="ocFkZinrsmVWE0J_aSwc-57">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ocFkZinrsmVWE0J_aSwc-60" value="MeetingRepository" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="80" y="1230" width="270" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="ocFkZinrsmVWE0J_aSwc-61" value="&lt;div&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;+ DbSet&amp;lt;Meeting&amp;gt; Meetings&lt;/span&gt;&lt;/div&gt;&lt;div&gt;+ DbSet&amp;lt;Note&amp;gt; Notes&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="360" y="1050" width="270" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="ocFkZinrsmVWE0J_aSwc-62" value="AppDbContext" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="360" y="1050" width="270" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="ocFkZinrsmVWE0J_aSwc-64" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="660" y="950" width="300" height="160" as="geometry" />
+        </mxCell>
+        <mxCell id="ocFkZinrsmVWE0J_aSwc-65" value="&lt;div&gt;+ Paths : PathsSettings&lt;/div&gt;&lt;div&gt;+ Load() : AppSettings&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="670" y="990" width="130" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="ocFkZinrsmVWE0J_aSwc-66" value="AppSettings" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="670" y="990" width="130" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="ocFkZinrsmVWE0J_aSwc-67" value="&lt;div&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;+ ReportsFolder : string&lt;/span&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="820" y="990" width="130" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="ocFkZinrsmVWE0J_aSwc-68" value="PathsSettings" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="820" y="990" width="130" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="ocFkZinrsmVWE0J_aSwc-69" value="Utility / Config" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="660" y="950" width="300" height="30" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
