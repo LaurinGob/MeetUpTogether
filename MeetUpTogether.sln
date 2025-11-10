@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MeetUpTogether.Models", "Me
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MeetUpTogether.DAL", "MeetUpTogether.DAL\MeetUpTogether.DAL.csproj", "{1DDB32C6-62DD-4278-B807-C405B6F40DE0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MeetUpTogether.UnitTests", "MeetUpTogether.UnitTests\MeetUpTogether.UnitTests.csproj", "{150D9C11-D796-4306-B7B4-13C924565029}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{1DDB32C6-62DD-4278-B807-C405B6F40DE0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1DDB32C6-62DD-4278-B807-C405B6F40DE0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1DDB32C6-62DD-4278-B807-C405B6F40DE0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{150D9C11-D796-4306-B7B4-13C924565029}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{150D9C11-D796-4306-B7B4-13C924565029}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{150D9C11-D796-4306-B7B4-13C924565029}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{150D9C11-D796-4306-B7B4-13C924565029}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
