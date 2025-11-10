@@ -92,9 +92,9 @@ namespace MeetUpTogether.UI.ViewModels
             {
                 try
                 {
+                    _logger.Info($"Removed meeting: {SelectedMeeting.Title}");
                     _meetingService.RemoveMeeting(SelectedMeeting);
                     AllMeetings.Remove(SelectedMeeting);
-                    _logger.Info($"Removed meeting: {SelectedMeeting.Title}");
                     SelectedMeeting = null;
                 }
                 catch (Exception ex)
